@@ -1,0 +1,8 @@
+ {   "name": "String",
+    "startDate": "Date",
+    "endDate": "Date",
+    "location":"String",
+    "description": "String",
+    "players": "Array",
+    "matches": "Array"
+}
