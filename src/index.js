@@ -1,9 +1,13 @@
 import express from 'express';
-import usersRoutes from './routes/users.js';
 import mongoose from 'mongoose';
 import 'dotenv/config.js';
 import cors from 'cors';
+
+import playerRoutes from './routes/players.js';
 import tournamentRoutes from './routes/tournaments.js';
+import authRoutes from './routes/user.js';
+import profileRoutes from './routes/profile.js';
+import userRoutes from './routes/users.js';
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -14,9 +18,17 @@ var corsOptions = {
 }
 app.use(express.json(),cors(corsOptions));
 
+app.get('/', (req, res) => {
+    res.status(200).send({ message: 'Welcome to the API',
+                            version: '1.0.0',
+                            connected: true });    
+});
 
-app.use('/users', usersRoutes);
+app.use('/players', playerRoutes);
 app.use('/tournaments', tournamentRoutes);
+app.use('/auth', authRoutes);
+app.use("/profile", profileRoutes);
+app.use('/users', userRoutes)
 
 
 // connect to mongoDB

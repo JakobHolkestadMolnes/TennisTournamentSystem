@@ -1,19 +1,19 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import { v4 as uuid } from 'uuid';
-import User from '../models/User.js';
+import Player from '../models/Player.js';
 
 
 
-export const newUser = (req,res) => {
-    const user = new User({
+export const newPlayer = (req,res) => {
+    const player = new Player({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
         birthDate: req.body.birthDate,
     })
 
-    user.save()
+    player.save()
     .then(data => {
         res.json(data);
     })
@@ -22,8 +22,8 @@ export const newUser = (req,res) => {
     })
 
 }
-export const getUsers = (req,res) => {
-    User.find()
+export const getPlayers = (req,res) => {
+    Player.find()
     .then(data => {
         res.json(data);
     })
@@ -32,9 +32,9 @@ export const getUsers = (req,res) => {
     })
 }
 
-export const getUser = (req,res) => {
+export const getPlayer = (req,res) => {
     const { id } = req.params;
-    User.findById(id)
+    Player.findById(id)
     .then(data => {
         if (data) {
             res.json(data);
